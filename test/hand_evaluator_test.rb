@@ -26,4 +26,24 @@ class HandEvaluatorTest < MiniTest::Test
     assert_equal hand_one_numbers, evaluator.collect_by_number(evaluator.hand_one)
     assert_equal hand_two_numbers, evaluator.collect_by_number(evaluator.hand_two)
   end
+
+  def test_it_can_find_a_single_pair
+    hand_one = '5H 5C 6S 7S KD'
+    hand_two = '2C 3S 8S 8D TD'
+
+    evaluator = HandEvaluator.new(hand_one, hand_two)
+
+    assert_equal ['5'], evaluator.find_pairs(evaluator.hand_one)
+    assert_equal ['8'], evaluator.find_pairs(evaluator.hand_two)
+  end
+
+  def test_it_can_find_two_pair
+    hand_one = '5H 5C 6S 7S 6D'
+    hand_two = '2C 2S 8S 8D TD'
+
+    evaluator = HandEvaluator.new(hand_one, hand_two)
+
+    assert_equal ['5', '6'], evaluator.find_pairs(evaluator.hand_one)
+    assert_equal ['2', '8'], evaluator.find_pairs(evaluator.hand_two)
+  end
 end

@@ -12,4 +12,10 @@ class HandEvaluator
       collection
     end
   end
+
+  def find_pairs(hand)
+    numbers = collect_by_number(hand)
+    pairs = numbers.select {|card, count| count == 2}
+    pairs.keys
+  end
 end
