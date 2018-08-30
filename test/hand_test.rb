@@ -176,4 +176,26 @@ class HandTest < MiniTest::Test
     assert_nil hand_one.find_straight_flush
     assert_nil hand_two.find_straight_flush
   end
+
+  def test_it_can_find_a_royal_flush
+    hand_one_cards = 'TH JH QH KH AH'
+    hand_two_cards = 'TS JS QS KS AS'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_equal ['A'], hand_one.find_royal_flush
+    assert_equal ['A'], hand_two.find_royal_flush
+  end
+
+  def test_it_does_not_find_a_royal_flush_if_one_does_not_exist
+    hand_one_cards = '9H TH JH QH KH'
+    hand_two_cards = 'TS JH QS KS AS'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_nil hand_one.find_royal_flush
+    assert_nil hand_two.find_royal_flush
+  end
 end

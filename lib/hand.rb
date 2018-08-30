@@ -66,6 +66,12 @@ class Hand
     end
   end
 
+  def find_royal_flush
+    if find_straight_flush && highest_card == ['A']
+      highest_card
+    end
+  end
+
   def sort_cards
     values = number_collection.keys.map do |number|
       convert_from_card_to_value(number)
