@@ -30,22 +30,32 @@ class Hand
         return nil
       end
     end
-    if face_values.values.include?(high_card)
-      [face_values.key(high_card)]
-    else
-      [high_card.to_s]
-    end
+    [convert_from_value_to_card(high_card)]
   end
 
   def sort_cards
-    numbers = number_collection.keys.map do |number|
-      if face_values.keys.include?(number)
-        face_values[number]
-      else
-        number.to_i
-      end
+    values = number_collection.keys.map do |number|
+      convert_from_card_to_value(number)
     end
-    numbers.sort
+    values.sort
+  end
+
+  private
+
+  def convert_from_card_to_value(card)
+    if face_values.keys.include?(card)
+      face_values[card]
+    else
+      card.to_i
+    end
+  end
+
+  def convert_from_value_to_card(value)
+    if face_values.values.include?(value)
+      face_values.key(value)
+    else
+      value.to_s
+    end
   end
 
   def face_values
