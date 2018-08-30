@@ -52,6 +52,17 @@ class HandTest < MiniTest::Test
     assert_equal ['8'], hand_two.find_pairs
   end
 
+  def test_it_returns_nil_if_there_are_no_pairs
+    hand_one_cards = '5H 3C 6S 7S KD'
+    hand_two_cards = '2C 3S 9S 8D TD'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_nil hand_one.find_pairs
+    assert_nil hand_two.find_pairs
+  end
+
   def test_it_can_find_two_pair
     hand_one_cards = '5H 5C 6S 7S 6D'
     hand_two_cards = '2C 2S 8S 8D TD'
@@ -72,6 +83,17 @@ class HandTest < MiniTest::Test
 
     assert_equal ['5'], hand_one.find_three_of_a_kind
     assert_equal ['8'], hand_two.find_three_of_a_kind
+  end
+
+  def test_it_returns_nil_if_there_are_no_three_of_a_kind
+    hand_one_cards = '5H 4C 5S 7S 6D'
+    hand_two_cards = '8C 2S 4S 8D TD'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_nil hand_one.find_three_of_a_kind
+    assert_nil hand_two.find_three_of_a_kind
   end
 
   def test_it_can_sort_cards
@@ -131,6 +153,17 @@ class HandTest < MiniTest::Test
 
     assert_equal ['5'], hand_one.find_four_of_a_kind
     assert_equal ['8'], hand_two.find_four_of_a_kind
+  end
+
+  def test_it_returns_nil_if_there_are_no_four_of_a_kind
+    hand_one_cards = '5H 5C 3S 7S 5D'
+    hand_two_cards = '8C 2S 3S 8D 8H'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_nil hand_one.find_four_of_a_kind
+    assert_nil hand_two.find_four_of_a_kind
   end
 
   def test_it_can_find_a_full_house

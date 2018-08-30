@@ -25,17 +25,29 @@ class Hand
 
   def find_pairs
     pairs = number_collection.select {|card, count| count == 2}
-    pairs.keys
+    if pairs.length > 0
+      pairs.keys
+    else
+      nil
+    end
   end
 
   def find_three_of_a_kind
     triplets = number_collection.select {|card, count| count == 3}
-    triplets.keys
+    if triplets.length > 0
+      triplets.keys
+    else
+      nil
+    end
   end
 
   def find_four_of_a_kind
     fours = number_collection.select {|card, count| count == 4}
-    fours.keys
+    if fours.length > 0
+      fours.keys
+    else
+      nil
+    end
   end
 
   def find_straight
@@ -56,7 +68,7 @@ class Hand
 
   def find_full_house
     full_house = [find_three_of_a_kind, find_pairs]
-    return nil if full_house.first.empty? || full_house.last.empty?
+    return nil if full_house.first.nil? || full_house.last.nil?
     full_house.flatten
   end
 
