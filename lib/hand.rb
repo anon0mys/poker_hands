@@ -60,6 +60,12 @@ class Hand
     full_house.flatten
   end
 
+  def find_straight_flush
+    if find_flush && find_straight
+      highest_card
+    end
+  end
+
   def sort_cards
     values = number_collection.keys.map do |number|
       convert_from_card_to_value(number)

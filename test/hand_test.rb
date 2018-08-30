@@ -154,4 +154,26 @@ class HandTest < MiniTest::Test
     assert_nil hand_one.find_full_house
     assert_nil hand_two.find_full_house
   end
+
+  def test_it_can_find_a_straight_flush
+    hand_one_cards = '5H 6H 7H 8H 9H'
+    hand_two_cards = '9S TS JS QS KS'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_equal ['9'], hand_one.find_straight_flush
+    assert_equal ['K'], hand_two.find_straight_flush
+  end
+
+  def test_it_does_not_find_a_straight_flush_if_one_does_not_exist
+    hand_one_cards = '5H 6H 7H 3H 9H'
+    hand_two_cards = '9S TS JH QS KS'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_nil hand_one.find_straight_flush
+    assert_nil hand_two.find_straight_flush
+  end
 end
