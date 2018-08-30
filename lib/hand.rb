@@ -17,6 +17,8 @@ class Hand
     pairs.keys
   end
 
-  def find_three_of_a_kind(hand)
+  def find_three_of_a_kind
+    triplets = number_collection.select {|card, count| count == 3}
+    triplets.keys
   end
 end

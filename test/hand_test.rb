@@ -51,4 +51,18 @@ class HandTest < MiniTest::Test
     assert_equal ['5', '6'], hand_one.find_pairs
     assert_equal ['2', '8'], hand_two.find_pairs
   end
+
+  def test_it_can_find_three_of_a_kind
+    hand_one_cards = '5H 5C 5S 7S 6D'
+    hand_two_cards = '8C 2S 8S 8D TD'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_equal ['5'], hand_one.find_three_of_a_kind
+    assert_equal ['8'], hand_two.find_three_of_a_kind
+  end
+
+  def test_it_can_find_a_straight
+  end
 end
