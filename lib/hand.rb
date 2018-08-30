@@ -33,6 +33,11 @@ class Hand
     triplets.keys
   end
 
+  def find_four_of_a_kind
+    fours = number_collection.select {|card, count| count == 4}
+    fours.keys
+  end
+
   def find_straight
     sorted = sort_cards
     (0...sorted.length - 1).each do |index|
@@ -47,6 +52,12 @@ class Hand
     if suit_collection.length == 1
       highest_card
     end
+  end
+
+  def find_full_house
+    full_house = [find_three_of_a_kind, find_pairs]
+    return nil if full_house.first.empty? || full_house.last.empty?
+    full_house.flatten
   end
 
   def sort_cards

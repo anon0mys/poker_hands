@@ -121,4 +121,37 @@ class HandTest < MiniTest::Test
     assert_equal ['Q'], hand_one.find_flush
     assert_equal ['K'], hand_two.find_flush
   end
+
+  def test_it_can_find_four_of_a_kind
+    hand_one_cards = '5H 5C 5S 7S 5D'
+    hand_two_cards = '8C 2S 8S 8D 8H'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_equal ['5'], hand_one.find_four_of_a_kind
+    assert_equal ['8'], hand_two.find_four_of_a_kind
+  end
+
+  def test_it_can_find_a_full_house
+    hand_one_cards = '5H 5C 5S 2S 2D'
+    hand_two_cards = 'TC TS 8S 8D 8H'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_equal ['5', '2'], hand_one.find_full_house
+    assert_equal ['8', 'T'], hand_two.find_full_house
+  end
+
+  def test_it_does_not_find_a_full_house_if_none_exist
+    hand_one_cards = '5H 6C 5S 2S 2D'
+    hand_two_cards = 'TC TS 8S 7D 8H'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_nil hand_one.find_full_house
+    assert_nil hand_two.find_full_house
+  end
 end
