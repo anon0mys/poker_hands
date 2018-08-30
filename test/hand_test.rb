@@ -30,6 +30,17 @@ class HandTest < MiniTest::Test
     assert_equal hand_two_numbers, hand_two.number_collection
   end
 
+  def test_it_can_find_the_highest_card
+    hand_one_cards = '5H 5C 6S KD 7S'
+    hand_two_cards = '2C 3S 8S 8D TD'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_equal ['K'], hand_one.highest_card
+    assert_equal ['T'], hand_two.highest_card
+  end
+
   def test_it_can_find_a_single_pair
     hand_one_cards = '5H 5C 6S 7S KD'
     hand_two_cards = '2C 3S 8S 8D TD'

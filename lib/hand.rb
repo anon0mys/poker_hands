@@ -5,6 +5,10 @@ class Hand
     @cards = cards.split(' ')
   end
 
+  def highest_card
+    [convert_from_value_to_card(sort_cards.last)]
+  end
+
   def number_collection
     @number_collection ||= @cards.reduce(Hash.new(0)) do |collection, card|
       collection[card[0]] += 1
