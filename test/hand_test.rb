@@ -97,4 +97,28 @@ class HandTest < MiniTest::Test
     assert_equal ['9'], hand_one.find_straight
     assert_equal ['K'], hand_two.find_straight
   end
+
+  def test_it_can_collect_cards_by_suit
+    hand_one_cards = '5H 5C 6S 7S KD'
+    hand_one_suits = {'H' => 1, 'C' => 1, 'S' => 2, 'D' => 1}
+    hand_two_cards = '2C 3S 8S 8D TD'
+    hand_two_suits = {'C' => 1, 'S' => 2, 'D' => 2}
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_equal hand_one_suits, hand_one.suit_collection
+    assert_equal hand_two_suits, hand_two.suit_collection
+  end
+
+  def test_it_can_find_a_flush
+    hand_one_cards = '5H 6H 7H QH 2H'
+    hand_two_cards = '9S 2S 5S QS KS'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_equal ['Q'], hand_one.find_flush
+    assert_equal ['K'], hand_two.find_flush
+  end
 end
