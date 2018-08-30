@@ -1,10 +1,10 @@
-require '''minitest/autorun'
+require 'minitest/autorun'
 require 'minitest/pride'
 require 'pry'
-require './lib/hand_evaluator'
+require './lib/hand'
 
 class HandTest < MiniTest::Test
-  def test_it_initializes_with_two_hands_of_cards
+  def test_it_initializes_with_a_hand_of_cards
     hand_one_cards = '5H 5C 6S 7S KD'
     hand_two_cards = '2C 3S 8S 8D TD'
 
@@ -63,6 +63,27 @@ class HandTest < MiniTest::Test
     assert_equal ['8'], hand_two.find_three_of_a_kind
   end
 
+  def test_it_can_sort_cards
+    hand_one_cards = '5H 6C 7S 8S 9D'
+    hand_one_sorted = [5, 6, 7, 8, 9]
+    hand_two_cards = '9C TS JS QD KD'
+    hand_two_sorted = [9, 10, 11, 12, 13]
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_equal hand_one_sorted, hand_one.sort_cards
+    assert_equal hand_two_sorted, hand_two.sort_cards
+  end
+
   def test_it_can_find_a_straight
+    hand_one_cards = '5H 6C 7S 8S 9D'
+    hand_two_cards = '9C TS JS QD KD'
+
+    hand_one = Hand.new(hand_one_cards)
+    hand_two = Hand.new(hand_two_cards)
+
+    assert_equal ['9'], hand_one.find_straight
+    assert_equal ['K'], hand_two.find_straight
   end
 end
