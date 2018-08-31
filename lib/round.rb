@@ -31,8 +31,8 @@ class Round
       @winner = 'Player 1'
     elsif player_two_hand.first > player_one_hand.first
       @winner = 'Player 2'
-    elsif length == 0
-      tie_breaker(@player_one.highest_card, @player_two.highest_card, 0)
+    elsif length == 1
+      tie_breaker(@player_one.cards, @player_two.cards, 5)
     else
       tie_breaker(player_one_hand[1..-1], player_two_hand[1..-1], length - 1)
     end
@@ -42,6 +42,13 @@ class Round
 
   def hand_types
     [
+      'find_royal_flush',
+      'find_straight_flush',
+      'find_four_of_a_kind',
+      'find_full_house',
+      'find_flush',
+      'find_straight',
+      'find_three_of_a_kind',
       'find_pairs',
       'highest_card'
     ]
