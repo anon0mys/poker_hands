@@ -37,8 +37,8 @@ class HandTest < MiniTest::Test
     hand_one = Hand.new(hand_one_cards)
     hand_two = Hand.new(hand_two_cards)
 
-    assert_equal ['K'], hand_one.highest_card
-    assert_equal ['T'], hand_two.highest_card
+    assert_equal ['13'], hand_one.highest_card
+    assert_equal ['10'], hand_two.highest_card
   end
 
   def test_it_can_find_a_single_pair
@@ -117,7 +117,7 @@ class HandTest < MiniTest::Test
     hand_two = Hand.new(hand_two_cards)
 
     assert_equal ['9'], hand_one.find_straight
-    assert_equal ['K'], hand_two.find_straight
+    assert_equal ['13'], hand_two.find_straight
   end
 
   def test_it_can_collect_cards_by_suit
@@ -140,8 +140,8 @@ class HandTest < MiniTest::Test
     hand_one = Hand.new(hand_one_cards)
     hand_two = Hand.new(hand_two_cards)
 
-    assert_equal ['Q'], hand_one.find_flush
-    assert_equal ['K'], hand_two.find_flush
+    assert_equal ['12'], hand_one.find_flush
+    assert_equal ['13'], hand_two.find_flush
   end
 
   def test_it_can_find_four_of_a_kind
@@ -174,7 +174,7 @@ class HandTest < MiniTest::Test
     hand_two = Hand.new(hand_two_cards)
 
     assert_equal ['5', '2'], hand_one.find_full_house
-    assert_equal ['8', 'T'], hand_two.find_full_house
+    assert_equal ['8', '10'], hand_two.find_full_house
   end
 
   def test_it_does_not_find_a_full_house_if_none_exist
@@ -196,7 +196,7 @@ class HandTest < MiniTest::Test
     hand_two = Hand.new(hand_two_cards)
 
     assert_equal ['9'], hand_one.find_straight_flush
-    assert_equal ['K'], hand_two.find_straight_flush
+    assert_equal ['13'], hand_two.find_straight_flush
   end
 
   def test_it_does_not_find_a_straight_flush_if_one_does_not_exist
@@ -217,8 +217,8 @@ class HandTest < MiniTest::Test
     hand_one = Hand.new(hand_one_cards)
     hand_two = Hand.new(hand_two_cards)
 
-    assert_equal ['A'], hand_one.find_royal_flush
-    assert_equal ['A'], hand_two.find_royal_flush
+    assert_equal ['14'], hand_one.find_royal_flush
+    assert_equal ['14'], hand_two.find_royal_flush
   end
 
   def test_it_does_not_find_a_royal_flush_if_one_does_not_exist

@@ -6,7 +6,7 @@ class Hand
   end
 
   def highest_card
-    [convert_from_value_to_card(sort_cards.last)]
+    [sort_cards.last.to_s]
   end
 
   def number_collection
@@ -25,29 +25,17 @@ class Hand
 
   def find_pairs
     pairs = number_collection.select {|card, count| count == 2}
-    if pairs.length > 0
-      pairs.keys
-    else
-      nil
-    end
+    resolve_of_a_kind(pairs)
   end
 
   def find_three_of_a_kind
     triplets = number_collection.select {|card, count| count == 3}
-    if triplets.length > 0
-      triplets.keys
-    else
-      nil
-    end
+    resolve_of_a_kind(triplets)
   end
 
   def find_four_of_a_kind
     fours = number_collection.select {|card, count| count == 4}
-    if fours.length > 0
-      fours.keys
-    else
-      nil
-    end
+    resolve_of_a_kind(fours)
   end
 
   def find_straight
@@ -79,7 +67,7 @@ class Hand
   end
 
   def find_royal_flush
-    if find_straight_flush && highest_card == ['A']
+    if find_straight_flush && highest_card == ['14']
       highest_card
     end
   end
@@ -98,6 +86,14 @@ class Hand
       face_values[card]
     else
       card.to_i
+    end
+  end
+
+  def resolve_of_a_kind(set)
+    if set.length > 0
+      set.keys.map {|key| convert_from_card_to_value(key).to_s}
+    else
+      nil
     end
   end
 
