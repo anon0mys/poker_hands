@@ -32,7 +32,7 @@ class Round
     elsif player_two_hand.first > player_one_hand.first
       @winner = 'Player 2'
     elsif length == 1
-      tie_breaker(@player_one.sort_cards, @player_two.sort_cards, 5)
+      tie_breaker(@player_one.sort_cards.reverse, @player_two.sort_cards.reverse, 5)
     else
       tie_breaker(player_one_hand[1..-1], player_two_hand[1..-1], length - 1)
     end
@@ -49,7 +49,8 @@ class Round
       'find_flush',
       'find_straight',
       'find_three_of_a_kind',
-      'find_pairs',
+      'find_two_pair',
+      'find_one_pair',
       'highest_card'
     ]
   end

@@ -28,6 +28,22 @@ class Hand
     resolve_of_a_kind(pairs)
   end
 
+  def find_one_pair
+    pairs = find_pairs
+    if pairs.nil? || pairs.length != 1
+      return nil
+    end
+    pairs
+  end
+
+  def find_two_pair
+    pairs = find_pairs
+    if pairs.nil? || pairs.length != 2
+      return nil
+    end
+    pairs
+  end
+
   def find_three_of_a_kind
     triplets = number_collection.select {|card, count| count == 3}
     resolve_of_a_kind(triplets)

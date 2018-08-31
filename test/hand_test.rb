@@ -59,8 +59,8 @@ class HandTest < MiniTest::Test
     hand_one = Hand.new(hand_one_cards)
     hand_two = Hand.new(hand_two_cards)
 
-    assert_nil hand_one.find_pairs
-    assert_nil hand_two.find_pairs
+    assert_nil hand_one.find_one_pair
+    assert_nil hand_two.find_one_pair
   end
 
   def test_it_can_find_two_pair
@@ -70,8 +70,8 @@ class HandTest < MiniTest::Test
     hand_one = Hand.new(hand_one_cards)
     hand_two = Hand.new(hand_two_cards)
 
-    assert_equal ['6', '5'], hand_one.find_pairs
-    assert_equal ['8', '2'], hand_two.find_pairs
+    assert_equal ['6', '5'], hand_one.find_two_pair
+    assert_equal ['8', '2'], hand_two.find_two_pair
   end
 
   def test_it_can_find_three_of_a_kind
