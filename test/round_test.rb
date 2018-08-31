@@ -102,4 +102,16 @@ class RoundTest < MiniTest::Test
 
     assert_equal 'Player 1', round.determine_winner
   end
+
+  def test_it_can_ranks_by_last_card_if_hand_ties_and_all_others_tie
+    player_one_cards = %w[2H 2D TC 9D 8S]
+    player_two_cards = %w[2C 2S TS 9C 7D]
+
+    player_one = Hand.new(player_one_cards)
+    player_two = Hand.new(player_two_cards)
+
+    round = Round.new(player_one, player_two)
+
+    assert_equal 'Player 1', round.determine_winner
+  end
 end
