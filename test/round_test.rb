@@ -78,4 +78,28 @@ class RoundTest < MiniTest::Test
 
     assert_equal 'Player 1', round.determine_winner
   end
+
+  def test_it_can_rank_by_best_second_set_of_cards
+    player_one_cards = %w[2H 2D 4C 4D 6S]
+    player_two_cards = %w[4H 4S 3S 3C 9D]
+
+    player_one = Hand.new(player_one_cards)
+    player_two = Hand.new(player_two_cards)
+
+    round = Round.new(player_one, player_two)
+
+    assert_equal 'Player 2', round.determine_winner
+  end
+
+  def test_it_can_rank_by_highest_card_if_hand_ties_twice
+    player_one_cards = %w[2H 2D 4C 4D TS]
+    player_two_cards = %w[4H 4S 2S 2C 9D]
+
+    player_one = Hand.new(player_one_cards)
+    player_two = Hand.new(player_two_cards)
+
+    round = Round.new(player_one, player_two)
+
+    assert_equal 'Player 1', round.determine_winner
+  end
 end

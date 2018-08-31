@@ -91,7 +91,8 @@ class Hand
 
   def resolve_of_a_kind(set)
     if set.length > 0
-      set.keys.map {|key| convert_from_card_to_value(key).to_s}
+      cards = set.keys.map {|key| convert_from_card_to_value(key)}
+      cards.sort.reverse.map {|key| key.to_s }
     else
       nil
     end
