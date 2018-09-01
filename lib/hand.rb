@@ -85,7 +85,7 @@ class Hand
   end
 
   def find_royal_flush
-    if find_straight_flush && highest_card == ['14']
+    if find_straight_flush && highest_card == [14]
       highest_card
     end
   end
