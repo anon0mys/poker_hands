@@ -4,6 +4,7 @@ class Round
   def initialize(player_one, player_two)
     @player_one = player_one
     @player_two = player_two
+    @winner = nil
   end
 
   def determine_winner
