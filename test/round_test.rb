@@ -67,6 +67,18 @@ class RoundTest < MiniTest::Test
     assert_equal 'Player 1', round.determine_winner
   end
 
+  def test_face_card_pairs_beat_numbered_card_pairs
+    player_one_cards = %w[3D KH QD 6C 6S]
+    player_two_cards = %w[AD AS 8H 2H QS]
+
+    player_one = Hand.new(player_one_cards)
+    player_two = Hand.new(player_two_cards)
+
+    round = Round.new(player_one, player_two)
+
+    assert_equal 'Player 2', round.determine_winner
+  end
+
   def test_it_can_rank_by_best_set_of_cards
     player_one_cards = %w[2H 2D 4C 4D 4S]
     player_two_cards = %w[3C 3D 3S 9S 9D]
@@ -113,5 +125,17 @@ class RoundTest < MiniTest::Test
     round = Round.new(player_one, player_two)
 
     assert_equal 'Player 1', round.determine_winner
+  end
+
+  def test_it_does_not_include_pairs_in_straights
+    player_one_cards = %w[6C 4D 7S 7H 5S]
+    player_two_cards = %w[JC 6S 9H 4H JH]
+
+    player_one = Hand.new(player_one_cards)
+    player_two = Hand.new(player_two_cards)
+
+    round = Round.new(player_one, player_two)
+
+    assert_equal 'Player 2', round.determine_winner
   end
 end

@@ -6,7 +6,7 @@ class Hand
   end
 
   def highest_card
-    [sort_cards.last.to_s]
+    [sort_cards.last]
   end
 
   def number_collection
@@ -55,7 +55,9 @@ class Hand
   end
 
   def find_straight
-    sorted = sort_cards
+    sorted = @cards.map do |card|
+      convert_from_card_to_value(card[0])
+    end.sort
     (0...sorted.length - 1).each do |index|
       if sorted[index] + 1 != sorted[index + 1]
         return nil
@@ -108,7 +110,7 @@ class Hand
   def resolve_of_a_kind(set)
     if set.length > 0
       cards = set.keys.map {|key| convert_from_card_to_value(key)}
-      cards.sort.reverse.map {|key| key.to_s }
+      cards.sort.reverse
     else
       nil
     end
